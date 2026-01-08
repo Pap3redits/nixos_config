@@ -1,20 +1,20 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
-  
+
   home.username = "christian";
   home.homeDirectory = "/home/christian";
 
   home.packages = with pkgs; [
     ripgrep
-	  kitty
-	  eza
-	  fzf
-	  bat
-	  gcc
-	  lazygit
-	  fd
-	  nerd-fonts.iosevka
+    kitty
+    eza
+    fzf
+    bat
+    gcc
+    lazygit
+    fd
+    nerd-fonts.iosevka
     fastfetch
     firefox
     btop
@@ -50,8 +50,11 @@
     steam
     tailscale
     zed-editor
+    nix-ld
+    nil
+    nixd
   ];
-  
+
   #programs.doom-emacs = {
   #  enable = true;
   #  doomDir = inputs.doom-config;
@@ -84,6 +87,6 @@
     name = "Bibata-Modern-Classic";
     size = 16;
   };
- 
+
   home.stateVersion = "25.05";
 }
