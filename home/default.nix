@@ -49,6 +49,7 @@
     pavucontrol
     steam
     tailscale
+    zed-editor
   ];
   
   #programs.doom-emacs = {
