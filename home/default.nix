@@ -53,6 +53,7 @@
     nix-ld
     nil
     nixd
+    hyprnotify
   ];
 
   #programs.doom-emacs = {
