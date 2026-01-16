@@ -4,6 +4,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
   };
+  services.hyprpaper.enable = true;
   home.file.".config/hypr".source = ../conf/hypr;
   #services.hyprpaper = {
   #  enable = true;
