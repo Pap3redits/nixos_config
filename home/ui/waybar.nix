@@ -7,7 +7,7 @@
     in
     {
       "waybar".source = mkSymlink "/etc/nixos/home/conf/waybar/";
-      "hypr".source = mkSymlink "/etc/nixos/home/conf/hypr/";
+
     };
 
   programs.waybar = {
