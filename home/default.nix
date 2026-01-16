@@ -76,8 +76,8 @@
     ./terminal/shell.nix
     ./terminal/ghostty.nix
     ./terminal/zoxide.nix
-    ./ui/hyprland.nix
-    #./ui/hyprland_test.nix
+    #./ui/hyprland.nix
+    ./ui/hyprland_test.nix
     ./ui/wofi.nix
     ./ui/waybar.nix
     ./cast.nix
