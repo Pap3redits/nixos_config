@@ -2,26 +2,34 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Setup for nvidia drivers and dual GPU
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
   hardware.nvidia.prime = {
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   services.flatpak = {
     enable = true;
@@ -31,7 +39,7 @@
   };
 
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["christian"];
+  users.extraGroups.vboxusers.members = [ "christian" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -43,7 +51,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
- 
+
   # Configure sddm and theme
   services.displayManager.sddm = {
     enable = true;
@@ -59,7 +67,6 @@
       };
     };
   };
-
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -89,12 +96,14 @@
     variant = "";
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.christian = {
     isNormalUser = true;
     description = "Christian";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Allow unfree packages
@@ -104,16 +113,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	git
-	kitty
-	kdePackages.qtmultimedia # needed for the sddm theme
-	sddm-astronaut
+    git
+    kitty
+    kdePackages.qtmultimedia # needed for the sddm theme
+    sddm-astronaut
   ];
-  
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    };
+  };
   environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -136,9 +145,9 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
-    
-  };
 
+  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
