@@ -55,6 +55,7 @@
     nixd
     hyprnotify
     libnotify
+    hyprpaper
   ];
 
   #programs.doom-emacs = {
