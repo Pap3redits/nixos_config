@@ -3,11 +3,12 @@
   "position": "top",
   "margin-bottom": -10,
   "spacing": 0,
-  "modules-left": ["hyprland/workspaces", "custom/uptime", "cpu", "tray"],
+  "modules-left": ["hyprland/workspaces", "custom/uptime", "cpu"],
 
   "modules-center": ["clock"],
 
   "modules-right": [
+    "tray",
     "custom/pomodoro",
     "bluetooth",
     "network",
