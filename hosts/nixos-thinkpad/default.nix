@@ -2,15 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   services.flatpak = {
     enable = true;
@@ -20,10 +28,14 @@
   };
 
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["christian"];
+  users.extraGroups.vboxusers.members = [ "christian" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 5;
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos-thinkpad"; # Define your hostname.
@@ -32,7 +44,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
- 
+
   # Configure sddm and theme
   services.displayManager.sddm = {
     enable = true;
@@ -48,7 +60,6 @@
       };
     };
   };
-
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -78,12 +89,14 @@
     variant = "";
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.christian = {
     isNormalUser = true;
     description = "Christian";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Allow unfree packages
@@ -93,16 +106,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	git
-	kitty
-	kdePackages.qtmultimedia # needed for the sddm theme
-	sddm-astronaut
+    git
+    kitty
+    kdePackages.qtmultimedia # needed for the sddm theme
+    sddm-astronaut
   ];
-  
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    };
+  };
   environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -125,9 +138,8 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
-    
-  };
 
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
