@@ -30,6 +30,7 @@
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor=,preferred,auto,1
+      monitor= DP-4,preferred,auto,1,transform,1
 
 
       ###################
