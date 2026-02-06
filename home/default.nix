@@ -47,7 +47,6 @@
     winetricks
     protontricks
     pavucontrol
-    steam
     tailscale
     zed-editor
     nix-ld
@@ -56,6 +55,7 @@
     hyprnotify
     libnotify
     hyprpaper
+    nh
   ];
 
   #programs.doom-emacs = {

@@ -89,6 +89,8 @@
     variant = "";
   };
 
+  services.xserver.enableTCP = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.christian = {
     isNormalUser = true;
@@ -134,6 +136,17 @@
 
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vpl-gpu-rt
+    ];
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
 
   services.tailscale = {
     enable = true;
