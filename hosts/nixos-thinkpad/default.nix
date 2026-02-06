@@ -118,7 +118,10 @@
     enable = true;
     defaultEditor = true;
   };
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "nvim";
+    NH_FLAKE = "/home/christian/nixos_config";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
